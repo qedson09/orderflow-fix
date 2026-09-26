@@ -45,6 +45,24 @@ npm run preview
 
 O build de produção **sempre usa API real**, mesmo se solicitado com `--mode mock`. O script de build procura marcadores do adaptador simulado nos bundles. `preview` serve o build em http://localhost:4173 para inspeção; para integração de produção use Nginx/Docker. O modo simulado existe apenas no servidor de desenvolvimento.
 
+## Docker Compose
+
+Na raiz `orderflow-fix`:
+
+```bash
+docker compose -f compose.frontend.yaml up --build -d
+```
+
+Abra http://localhost:3000. Este arquivo contém apenas o frontend. Sem o backend, a página abre e informa API indisponível; chamadas `/api` recebem erro do proxy. Não há backend fictício em produção.
+
+Para a solução completa das Partes 2 e 3, use o compose.yaml da raiz, que já declara o serviço `ordergenerator` na mesma rede e porta interna 8080:
+
+```bash
+docker compose up --build -d
+```
+
+Nginx preserva `/api` e usa o DNS interno do Docker. Caso o serviço tenha outro nome/porta, ajuste nginx.conf. A porta publicada fica limitada a localhost. Para publicação externa, configurar HTTPS no proxy de borda.
+
 ## Estrutura
 
 ```text
