@@ -1,0 +1,12 @@
+name: orderflow-fix
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "127.0.0.1:3000:8080"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    # O serviço ordergenerator da Parte 3 deve usar a mesma rede default,
+    # com ASPNETCORE_HTTP_PORTS=8080. Este arquivo não implementa esse serviço.

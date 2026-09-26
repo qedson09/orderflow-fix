@@ -1,0 +1,28 @@
+@base = http://localhost:3000
+
+GET {{base}}/api/accounts
+
+### Exposição e limite por ativo
+GET {{base}}/api/accounts/CLIENTE-001/exposures
+
+### Nova identidade deve ser um UUID v4 real gerado pelo cliente
+POST {{base}}/api/orders
+Content-Type: application/json
+
+{
+  "clOrdId": "ed0f4b17-d1ca-4f5f-9d31-f15ec0b2f155",
+  "accountId": "CLIENTE-001",
+  "symbol": "PETR4",
+  "side": "B",
+  "quantity": 100,
+  "price": "35.50"
+}
+
+### Consultar status
+GET {{base}}/api/orders/ed0f4b17-d1ca-4f5f-9d31-f15ec0b2f155
+
+### Auditoria eventual
+GET {{base}}/api/orders/ed0f4b17-d1ca-4f5f-9d31-f15ec0b2f155/events
+
+### Recentes
+GET {{base}}/api/orders
