@@ -10,6 +10,8 @@
 *.userosscache
 *.sln.docstates
 *.env
+.env.local
+**/.env.local
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -179,6 +181,7 @@ coverage*.info
 # Visual Studio code coverage results
 *.coverage
 *.coveragexml
+**/TestResults/
 
 # NCrunch
 _NCrunch_*
